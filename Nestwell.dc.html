@@ -767,9 +767,9 @@
 <sc-if value="{{ s.cg_home }}" hint-placeholder-val="{{ false }}">
 <div data-screen-label="Caregiver home" style="padding:2px 20px 24px;display:flex;flex-direction:column;gap:18px">
 <div style="display:flex;align-items:center;gap:12px;height:56px"><span style="width:48px;height:48px;border-radius:50%;background:#D9E4DC;color:#24493F;display:flex;align-items:center;justify-content:center;font-weight:700;background-image:url(https://images.unsplash.com/photo-1624727828489-a1e03b79bba8?w=200&h=200&q=70&auto=format&fit=crop&crop=faces);background-size:cover;background-position:center;color:transparent">MS</span><span style="flex:1"><span style="display:block;font-size:22px;font-weight:700">Good morning, Maria</span><span style="display:flex;align-items:center;gap:4px;font-size:13px;color:#24493F;font-weight:600"><span style="display:flex">{{ ic.shield }}</span>Verified PSW · Experienced</span></span><button onClick="{{ go.notifications }}" style="width:44px;height:44px;border-radius:50%;border:none;background:#fff;box-shadow:0 0 0 1px rgba(30,42,39,.08);font-size:22px;color:#1E2A27;display:flex;align-items:center;justify-content:center">{{ ic.bell }}</button></div>
-<button onClick="{{ toggleOnline }}" style="position:relative;height:96px;border-radius:48px;border:none;background:{{ onlineBg }};color:{{ onlineCol }};box-shadow:0 0 0 1px rgba(30,42,39,.1);text-align:left;padding:0 26px 0 110px;transition:background .25s">
-<span style="position:absolute;top:6px;left:{{ onlineKnob }};width:84px;height:84px;border-radius:50%;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;font-size:34px;color:#2F5D50;transition:left .25s">{{ ic.power }}</span>
-<span style="display:block;font-size:24px;font-weight:700">{{ onlineLabel }}</span><span style="display:block;font-size:15px;opacity:.85;margin-top:2px">{{ onlineSub }}</span>
+<button onClick="{{ toggleOnline }}" style="display:flex;flex-direction:{{ onlineDir }};align-items:center;gap:4px;width:100%;height:96px;border-radius:48px;border:none;background:{{ onlineBg }};color:{{ onlineCol }};box-shadow:0 0 0 1px rgba(30,42,39,.1);text-align:left;padding:6px;transition:background .25s">
+<span style="width:84px;height:84px;flex:none;border-radius:50%;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;font-size:34px;color:#2F5D50">{{ ic.power }}</span>
+<span style="flex:1;min-width:0;padding:0 18px"><span style="display:block;font-size:22px;font-weight:700;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ onlineLabel }}</span><span style="display:block;font-size:14px;opacity:.85;margin-top:3px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ onlineSub }}</span></span>
 </button>
 <div style="background:#fff;border-radius:22px;padding:18px;box-shadow:0 0 0 1px rgba(30,42,39,.07)">
 <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:15px;color:#56605C">Today's earnings</span><button onClick="{{ go.cg_earnings }}" style="border:none;background:none;color:#2F5D50;font-size:15px;font-weight:600;padding:0">Details</button></div>
@@ -788,7 +788,7 @@
 <sc-if value="{{ s.cg_home_dark }}" hint-placeholder-val="{{ false }}">
 <div data-screen-label="Caregiver home (dark)" style="padding:2px 20px 24px;display:flex;flex-direction:column;gap:18px;color:#EEF1EE">
 <div style="display:flex;align-items:center;gap:12px;height:56px"><span style="width:48px;height:48px;border-radius:50%;background:#2C3D37;color:#B9DCCB;display:flex;align-items:center;justify-content:center;font-weight:700;background-image:url(https://images.unsplash.com/photo-1624727828489-a1e03b79bba8?w=200&h=200&q=70&auto=format&fit=crop&crop=faces);background-size:cover;background-position:center;color:transparent">MS</span><span style="flex:1"><span style="display:block;font-size:22px;font-weight:700">Good evening, Maria</span><span style="font-size:13px;color:#8CC5AE;font-weight:600">Verified PSW · Experienced</span></span></div>
-<button onClick="{{ toggleOnline }}" style="position:relative;height:96px;border-radius:48px;border:none;background:#2F5D50;color:#fff;text-align:left;padding:0 26px 0 110px"><span style="position:absolute;top:6px;left:6px;width:84px;height:84px;border-radius:50%;background:#EEF1EE;display:flex;align-items:center;justify-content:center;font-size:34px;color:#2F5D50">{{ ic.power }}</span><span style="display:block;font-size:24px;font-weight:700">You're online</span><span style="display:block;font-size:15px;opacity:.85;margin-top:2px">Evening requests near Kitchener</span></button>
+<button onClick="{{ toggleOnline }}" style="display:flex;flex-direction:row-reverse;align-items:center;gap:4px;width:100%;height:96px;border-radius:48px;border:none;background:#2F5D50;color:#fff;text-align:left;padding:6px"><span style="width:84px;height:84px;flex:none;border-radius:50%;background:#EEF1EE;display:flex;align-items:center;justify-content:center;font-size:34px;color:#2F5D50">{{ ic.power }}</span><span style="flex:1;min-width:0;padding:0 18px"><span style="display:block;font-size:22px;font-weight:700;line-height:1.15">You're online</span><span style="display:block;font-size:14px;opacity:.85;margin-top:3px;line-height:1.25">Evening requests near Kitchener</span></span></button>
 <div style="background:#1C2421;border-radius:22px;padding:18px;box-shadow:0 0 0 1px rgba(255,255,255,.06)"><div style="font-size:15px;color:#A3ADA9">Today's earnings</div><div style="font-size:38px;font-weight:700;letter-spacing:-.8px">$258.40</div><div style="display:flex;gap:16px;font-size:15px;color:#C9D1CD;margin-top:4px"><span>6.5 hrs</span><span>3 visits</span><span>$15 tips</span></div></div>
 <div style="font-size:22px;font-weight:700">Upcoming</div>
 <div style="display:flex;gap:14px;align-items:center;padding:16px;border-radius:20px;background:#1C2421;box-shadow:0 0 0 1px rgba(255,255,255,.06)"><span style="width:60px;text-align:center"><span style="display:block;font-size:20px;font-weight:700">7:00</span><span style="font-size:13px;color:#A3ADA9">PM</span></span><span style="flex:1"><span style="display:block;font-size:17px;font-weight:650">Edith M. · 1 hr</span><span style="display:block;font-size:14px;color:#A3ADA9;margin-top:2px">Evening routine · Downtown Kitchener</span></span></div>
@@ -1031,6 +1031,9 @@
 </sc-if>
 
 </div>
+<sc-if value="{{ showRestart }}" hint-placeholder-val="{{ false }}">
+<button onClick="{{ restartDemo }}" style="position:absolute;left:12px;bottom:{{ restartBottom }};z-index:45;height:40px;padding:0 14px 0 8px;border-radius:20px;border:none;background:rgba(247,243,236,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 0 0 1px rgba(30,42,39,.12),0 6px 18px rgba(30,42,39,.14);color:#2F5D50;font-size:15px;font-weight:650;display:flex;align-items:center;gap:2px"><span style="font-size:22px;display:flex">{{ ic.chevL }}</span>Start over</button>
+</sc-if>
 <sc-if value="{{ hasTabs }}" hint-placeholder-val="{{ false }}">
 <div style="position:absolute;left:0;right:0;bottom:0;height:86px;padding:6px 8px 0;display:flex;background:{{ tabBg }};backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid {{ tabLine }};z-index:20">
 <sc-for list="{{ tabs }}" as="t"><button onClick="{{ t.onTap }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;border:none;background:none;color:{{ t.col }};font-size:11px;font-weight:600;height:52px;padding-top:2px"><span style="font-size:26px;display:flex">{{ t.icon }}</span>{{ t.label }}</button></sc-for>
@@ -1407,7 +1410,15 @@ class Component extends DCLogic {
     clearTimeout(this.mt);
     if (id === 'matching') this.mt = setTimeout(() => { if (this.state.screen === 'matching') this.nav('matched'); }, 4200);
   }
-  back = () => { const hst = this.state.hist; if (!hst.length) return; this.setState({ screen: hst[hst.length-1], hist: hst.slice(0,-1) }, () => { if (this.scrollRef.current) this.scrollRef.current.scrollTop = 0; }); };
+  back = () => {
+    const hst = this.state.hist;
+    if (!hst.length) {
+      if (this.state.screen !== 'welcome') this.setState({ screen: 'welcome', hist: [], slide: 0 }, () => { if (this.scrollRef.current) this.scrollRef.current.scrollTop = 0; });
+      return;
+    }
+    this.setState({ screen: hst[hst.length-1], hist: hst.slice(0,-1) }, () => { if (this.scrollRef.current) this.scrollRef.current.scrollTop = 0; });
+  };
+  restartDemo = () => this.setState({ screen: 'welcome', hist: [], slide: 0, online: true, countdown: 30, reportSent: false, checkedIn: false, reviewSent: false }, () => { if (this.scrollRef.current) this.scrollRef.current.scrollTop = 0; });
 
   renderVals() {
     const st = this.state, p = this.props;
@@ -1568,13 +1579,15 @@ class Component extends DCLogic {
     const live = h('span', { style:{ width:9, height:9, borderRadius:'50%', background:'#3FA37A', animation:'nwBlink 1.6s ease-in-out infinite', display:'block' } });
 
     return {
-      s, go, back: this.back, ic: ICONS, flows, stageRef: this.stageRef, scrollRef: this.scrollRef, scale: mobile ? 1 : st.stageW ? Math.min(1, (st.stageW - 40) / (meta.pad ? 1220 : 417), (st.stageH - 40) / (meta.pad ? 860 : 876)) : 0.7,
+      s, go, back: this.back, restartDemo: this.restartDemo, ic: ICONS, flows, stageRef: this.stageRef, scrollRef: this.scrollRef, scale: mobile ? 1 : st.stageW ? Math.min(1, (st.stageW - 40) / (meta.pad ? 1220 : 417), (st.stageH - 40) / (meta.pad ? 860 : 876)) : 0.7,
       isPhone: !meta.pad, isPad: !!meta.pad, z, zw: (mobile ? st.vw : 393) / z, zh: (mobile ? st.vh : 852) / z, sbPad: Math.round((mobile ? 22 : 54) / z),
       chrome: !mobile, rootH: mobile ? st.vh + 'px' : '100vh', rootMin: (mobile || st.present || p.present) ? '0' : '600px', rootBg: mobile ? (dark ? '#111614' : '#F7F3EC') : 'transparent',
       fr: mobile ? { w: st.vw, h: st.vh, r: 0, bg: 'transparent', pad: 0, sh: 'none', sw: st.vw, sh2: st.vh, sr: 0 } : { w: 417, h: 876, r: 66, bg: '#1B1F1E', pad: 12, sh: 'inset 0 0 0 2px #3B423F,0 40px 90px rgba(30,42,39,.28)', sw: 393, sh2: 852, sr: 54 }, padBottom: meta.tabs ? Math.round(100 / z) : 30,
       screenBg: dark ? '#111614' : (meta.lock ? '#2A3431' : '#F7F3EC'), sbCol: (dark || meta.lock) ? '#fff' : '#1E2A27', sbTime: meta.t || '9:41',
       hasTabs: !!meta.tabs, tabs, tabBg: dark ? 'rgba(24,30,28,.92)' : 'rgba(251,249,245,.92)', tabLine: dark ? 'rgba(255,255,255,.08)' : 'rgba(30,42,39,.08)',
       showNotes: (p.showNotes ?? true) && !(st.present || p.present || mobile), showSide: !(st.present || p.present || mobile),
+      showRestart: scr !== 'welcome' && (st.present || !!p.present || mobile),
+      restartBottom: meta.tabs ? '96px' : (mobile ? '24px' : '28px'),
       enterPresent: () => this.setState({ present: true }), cur: { flow: meta.flow, label: meta.label, note: NOTES[scr] || '' },
       prevScreen: () => idx > 0 && this.nav(LIST[idx - 1].id), nextScreen: () => idx < LIST.length - 1 && this.nav(LIST[idx + 1].id),
       showRoleCtl: scr === 'report' || scr === 'report_dark' || scr === 'push', roleCtl, sizeCtl,
@@ -1589,7 +1602,7 @@ class Component extends DCLogic {
       medRows, moodPick, moodLabel: MOODS[st.mood - 1], share: tg(st.shareFam), toggleShare: set({ shareFam: !st.shareFam }), flagT: tg(st.flagOn), toggleFlag: set({ flagOn: !st.flagOn }), flagOn: st.flagOn,
       reportSent: st.reportSent, reportNotSent: !st.reportSent, sendReport: set({ reportSent: true }), resetReport: () => this.nav('cg_home', { reportSent: false, checkedIn: false }),
       online: st.online, offline: !st.online, onl: tg(st.online), toggleOnline: set({ online: !st.online }),
-      onlineBg: st.online ? '#2F5D50' : '#fff', onlineCol: st.online ? '#fff' : '#1E2A27', onlineKnob: st.online ? '206px' : '6px', onlineLabel: st.online ? 'You\'re online' : 'You\'re offline', onlineSub: st.online ? 'Receiving requests near Waterloo' : 'Go online to receive requests',
+      onlineBg: st.online ? '#2F5D50' : '#fff', onlineCol: st.online ? '#fff' : '#1E2A27', onlineDir: st.online ? 'row-reverse' : 'row', onlineLabel: st.online ? 'You\'re online' : 'You\'re offline', onlineSub: st.online ? 'Receiving requests near Waterloo' : 'Go online to receive requests',
       cd, ringOff, expired: cd === 0, active: cd > 0, week,
       apps, adm, decideOk: decide('ok'), decideNo: decide('no'), decideInfo: decide('info'), undo: () => this.setState(x => { const d = { ...x.decisions }; delete d[x.adminSel]; return { decisions: d }; }),
       admNav, pins, flagsQ, F, priceRows, areaGroups,
