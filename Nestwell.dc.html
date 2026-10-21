@@ -1033,7 +1033,7 @@
 
 </div>
 <sc-if value="{{ showRestart }}" hint-placeholder-val="{{ false }}">
-<button onClick="{{ restartDemo }}" style="position:absolute;left:12px;bottom:{{ restartBottom }};z-index:45;height:40px;padding:0 14px 0 8px;border-radius:20px;border:none;background:rgba(247,243,236,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 0 0 1px rgba(30,42,39,.12),0 6px 18px rgba(30,42,39,.14);color:#2F5D50;font-size:15px;font-weight:650;display:flex;align-items:center;gap:2px"><span style="font-size:22px;display:flex">{{ ic.chevL }}</span>Start over</button>
+<button onClick="{{ restartDemo }}" style="position:absolute;right:12px;top:{{ restartTop }};z-index:45;height:36px;padding:0 12px 0 8px;border-radius:18px;border:none;background:rgba(247,243,236,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 0 0 1px rgba(30,42,39,.12),0 4px 12px rgba(30,42,39,.12);color:#2F5D50;font-size:14px;font-weight:650;display:flex;align-items:center;gap:2px"><span style="font-size:18px;display:flex">{{ ic.chevL }}</span>Start over</button>
 </sc-if>
 <sc-if value="{{ hasTabs }}" hint-placeholder-val="{{ false }}">
 <div style="position:absolute;left:0;right:0;bottom:0;height:86px;padding:6px 8px 0;display:flex;background:{{ tabBg }};backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid {{ tabLine }};z-index:20">
@@ -1589,7 +1589,7 @@ class Component extends DCLogic {
       hasTabs: !!meta.tabs, tabs, tabBg: dark ? 'rgba(24,30,28,.92)' : 'rgba(251,249,245,.92)', tabLine: dark ? 'rgba(255,255,255,.08)' : 'rgba(30,42,39,.08)',
       showNotes: (p.showNotes ?? true) && !(st.present || p.present || mobile), showSide: !(st.present || p.present || mobile),
       showRestart: scr !== 'welcome' && (st.present || !!p.present || mobile),
-      restartBottom: meta.tabs ? '96px' : (mobile ? '24px' : '28px'),
+      restartTop: mobile ? '10px' : '58px',
       enterPresent: () => this.setState({ present: true }), cur: { flow: meta.flow, label: meta.label, note: NOTES[scr] || '' },
       prevScreen: () => idx > 0 && this.nav(LIST[idx - 1].id), nextScreen: () => idx < LIST.length - 1 && this.nav(LIST[idx + 1].id),
       showRoleCtl: scr === 'report' || scr === 'report_dark' || scr === 'push', roleCtl, sizeCtl,
