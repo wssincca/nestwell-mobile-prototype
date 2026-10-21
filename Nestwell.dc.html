@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&display=swap" rel="stylesheet">
-<style>body{margin:0;background:#E8E3D9;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,sans-serif;color:#1E2A27;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}button{font-family:inherit;cursor:pointer}input,textarea{font-family:inherit}a{color:#2F5D50}a:hover{color:#24493F}.nw-scroll::-webkit-scrollbar{width:0;height:0}@keyframes nwPulse{0%{transform:scale(.5);opacity:.5}100%{transform:scale(2.4);opacity:0}}@keyframes nwBlink{0%,100%{opacity:1}50%{opacity:.35}}@keyframes nwSpin{to{transform:rotate(360deg)}}</style>
+<style>body{margin:0;background:#E8E3D9;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,sans-serif;color:#1E2A27;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}button{font-family:inherit;cursor:pointer}input,textarea{font-family:inherit}a{color:#2F5D50}a:hover{color:#24493F}.nw-scroll::-webkit-scrollbar{width:0;height:0}.nw-screen{min-height:100%;display:flex;flex-direction:column}.nw-cta{position:sticky;bottom:0;z-index:12;flex:none;margin-top:auto;padding:12px 0 10px;background:linear-gradient(rgba(247,243,236,0) 0%,#F7F3EC 36%,#F7F3EC 100%)}.nw-cta-dark{background:linear-gradient(rgba(17,22,20,0) 0%,#111614 36%,#111614 100%)}@keyframes nwPulse{0%{transform:scale(.5);opacity:.5}100%{transform:scale(2.4);opacity:0}}@keyframes nwBlink{0%,100%{opacity:1}50%{opacity:.35}}@keyframes nwSpin{to{transform:rotate(360deg)}}</style>
 </helmet>
 <div style="display:flex;height:{{ rootH }};min-height:{{ rootMin }};overflow:hidden;background:{{ rootBg }}">
 <sc-if value="{{ showSide }}" hint-placeholder-val="{{ true }}">
@@ -38,46 +38,49 @@
 <div style="position:absolute;top:0;left:0;width:{{ zw }}px;height:{{ zh }}px;zoom:{{ z }}">
 <div ref="{{ scrollRef }}" class="nw-scroll" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding-top:{{ sbPad }}px;padding-bottom:{{ padBottom }}px">
 <sc-if value="{{ s.welcome }}" hint-placeholder-val="{{ true }}">
-<div data-screen-label="Welcome" style="min-height:768px;display:flex;flex-direction:column;padding:4px 24px 20px">
-<div style="display:flex;align-items:center;gap:10px;height:48px">
+<div data-screen-label="Welcome" class="nw-screen" style="padding:4px 24px 0">
+<div style="display:flex;align-items:center;gap:10px;height:48px;flex:none">
 <svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#2F5D50"></rect><path d="M9 25V15.5a7 7 0 0 1 14 0V25" fill="none" stroke="#F3E3D3" stroke-width="2.6" stroke-linecap="round"></path><circle cx="16" cy="18" r="3" fill="#E39A6F"></circle></svg>
 <span style="font-family:Newsreader,Georgia,serif;font-size:25px;letter-spacing:-.2px">Nestwell</span>
 <span style="flex:1"></span>
 <button onClick="{{ go.role }}" style="height:44px;padding:0 4px;border:none;background:none;color:#2F5D50;font-size:17px;font-weight:600">Skip</button>
 </div>
-<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:22px;padding-top:12px">
-<div style="height:330px;border-radius:30px;background-color:#EADFCF;background-image:url({{ slide.img }});background-size:cover;background-position:center"></div>
-<div style="font-size:32px;font-weight:700;line-height:1.12;letter-spacing:-.6px;text-wrap:pretty">{{ slide.title }}</div>
-<div style="font-size:19px;line-height:1.42;color:#45504C;text-wrap:pretty">{{ slide.body }}</div>
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:14px;padding-top:4px">
+<div style="flex:1;min-height:160px;max-height:240px;border-radius:28px;background-color:#EADFCF;background-image:url({{ slide.img }});background-size:cover;background-position:center"></div>
+<div style="font-size:28px;font-weight:700;line-height:1.12;letter-spacing:-.5px;text-wrap:pretty">{{ slide.title }}</div>
+<div style="font-size:17px;line-height:1.4;color:#45504C;text-wrap:pretty">{{ slide.body }}</div>
 </div>
-<div style="display:flex;gap:6px;justify-content:center;padding:22px 0 18px"><sc-for list="{{ slideDots }}" as="d"><span style="height:8px;width:{{ d.w }};border-radius:4px;background:{{ d.bg }};transition:all .25s"></span></sc-for></div>
-<button onClick="{{ nextSlide }}" style="height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Continue</button>
-<button onClick="{{ go.role }}" style="height:50px;border:none;background:none;color:#2F5D50;font-size:17px;font-weight:600;margin-top:4px">I already have an account</button>
+<div class="nw-cta">
+<div style="display:flex;gap:6px;justify-content:center;padding:0 0 12px"><sc-for list="{{ slideDots }}" as="d"><span style="height:8px;width:{{ d.w }};border-radius:4px;background:{{ d.bg }};transition:all .25s"></span></sc-for></div>
+<button onClick="{{ nextSlide }}" style="width:100%;height:54px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Continue</button>
+<button onClick="{{ go.role }}" style="width:100%;height:46px;border:none;background:none;color:#2F5D50;font-size:16px;font-weight:600;margin-top:2px">I already have an account</button>
+</div>
 </div>
 </sc-if>
 
 <sc-if value="{{ s.role }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Role picker" style="min-height:768px;display:flex;flex-direction:column;padding:0 20px 20px">
-<div style="height:48px;display:flex;align-items:center"><button onClick="{{ back }}" style="display:flex;align-items:center;height:44px;border:none;background:none;color:#2F5D50;font-size:17px;padding:0"><span style="font-size:24px;display:flex">{{ ic.chevL }}</span>Back</button></div>
-<div style="font-size:34px;font-weight:700;letter-spacing:-.5px;line-height:1.1;margin-top:8px">How will you use Nestwell?</div>
-<div style="font-size:17px;color:#56605C;margin-top:10px;line-height:1.4">You can add more roles later.</div>
-<div style="display:flex;flex-direction:column;gap:14px;margin-top:28px">
+<div data-screen-label="Role picker" class="nw-screen" style="padding:0 20px 0">
+<div style="height:48px;display:flex;align-items:center;flex:none"><button onClick="{{ back }}" style="display:flex;align-items:center;height:44px;border:none;background:none;color:#2F5D50;font-size:17px;padding:0"><span style="font-size:24px;display:flex">{{ ic.chevL }}</span>Back</button></div>
+<div style="font-size:30px;font-weight:700;letter-spacing:-.5px;line-height:1.1;margin-top:4px">How will you use Nestwell?</div>
+<div style="font-size:16px;color:#56605C;margin-top:8px;line-height:1.4">You can add more roles later.</div>
+<div style="display:flex;flex-direction:column;gap:12px;margin-top:20px;flex:1">
 <sc-for list="{{ roles }}" as="o" hint-placeholder-count="3">
-<button onClick="{{ o.onTap }}" style="display:flex;gap:16px;align-items:center;text-align:left;padding:20px 18px;border-radius:22px;background:{{ o.bg }};border:{{ o.bw }} solid {{ o.bd }};color:#1E2A27;min-height:104px">
-<span style="width:52px;height:52px;flex:none;border-radius:16px;background:#E4EEE9;color:#2F5D50;display:flex;align-items:center;justify-content:center;font-size:26px">{{ o.icon }}</span>
-<span style="flex:1"><span style="display:block;font-size:19px;font-weight:650;line-height:1.2">{{ o.title }}</span><span style="display:block;font-size:15px;color:#56605C;margin-top:4px;line-height:1.35">{{ o.desc }}</span></span>
+<button onClick="{{ o.onTap }}" style="display:flex;gap:14px;align-items:center;text-align:left;padding:16px;border-radius:20px;background:{{ o.bg }};border:{{ o.bw }} solid {{ o.bd }};color:#1E2A27;min-height:92px">
+<span style="width:48px;height:48px;flex:none;border-radius:14px;background:#E4EEE9;color:#2F5D50;display:flex;align-items:center;justify-content:center;font-size:24px">{{ o.icon }}</span>
+<span style="flex:1"><span style="display:block;font-size:18px;font-weight:650;line-height:1.2">{{ o.title }}</span><span style="display:block;font-size:14px;color:#56605C;margin-top:4px;line-height:1.35">{{ o.desc }}</span></span>
 <span style="width:26px;height:26px;flex:none;border-radius:50%;border:2px solid {{ o.ring }};display:flex;align-items:center;justify-content:center"><span style="width:13px;height:13px;border-radius:50%;background:{{ o.dot }}"></span></span>
 </button>
 </sc-for>
 </div>
-<div style="flex:1"></div>
-<div style="display:flex;gap:8px;align-items:center;justify-content:center;font-size:13px;color:#56605C;padding:14px 0"><span style="font-size:15px;display:flex">{{ ic.lock }}</span>Your health information is stored in Canada</div>
-<button onClick="{{ roleNext }}" style="height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Continue</button>
+<div class="nw-cta">
+<div style="display:flex;gap:8px;align-items:center;justify-content:center;font-size:13px;color:#56605C;padding:0 0 12px"><span style="font-size:15px;display:flex">{{ ic.lock }}</span>Your health information is stored in Canada</div>
+<button onClick="{{ roleNext }}" style="width:100%;height:54px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Continue</button>
+</div>
 </div>
 </sc-if>
 
 <sc-if value="{{ s.family_add }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Add a parent" style="padding:0 20px 20px;display:flex;flex-direction:column;min-height:768px">
+<div data-screen-label="Add a parent" class="nw-screen" style="padding:0 20px 0">
 <div style="height:48px;display:flex;align-items:center;justify-content:space-between"><button onClick="{{ back }}" style="display:flex;align-items:center;height:44px;border:none;background:none;color:#2F5D50;font-size:17px;padding:0"><span style="font-size:24px;display:flex">{{ ic.chevL }}</span>Back</button><span style="font-size:15px;color:#56605C">Step 1 of 3</span></div>
 <div style="height:4px;border-radius:2px;background:#E2DDD3;margin-top:4px"><div style="width:33%;height:100%;border-radius:2px;background:#2F5D50"></div></div>
 <div style="font-size:30px;font-weight:700;letter-spacing:-.5px;line-height:1.12;margin-top:20px">Who are you arranging care for?</div>
@@ -100,13 +103,12 @@
 <div style="display:flex;gap:14px;align-items:center;padding:16px;border-radius:20px;background:#fff;box-shadow:0 0 0 1px rgba(30,42,39,.07)"><span style="width:52px;height:52px;border-radius:50%;background:#EBD9C6;color:#7A4A2E;display:flex;align-items:center;justify-content:center;font-weight:700;background-image:url(https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?w=200&h=200&q=70&auto=format&fit=crop&crop=faces);background-size:cover;background-position:center;color:transparent">LR</span><span style="flex:1"><span style="display:block;font-size:17px;font-weight:650">Lakshmi R.</span><span style="display:block;font-size:15px;color:#56605C">Waterloo · member since Sept 2026</span></span><span style="font-size:22px;color:#2F5D50;display:flex">{{ ic.check }}</span></div>
 </div>
 </sc-if>
-<div style="flex:1;min-height:20px"></div>
-<button onClick="{{ go.consent }}" style="height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600;margin-top:20px">Continue</button>
+<div class="nw-cta"><button onClick="{{ go.consent }}" style="width:100%;height:54px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Continue</button></div>
 </div>
 </sc-if>
 
 <sc-if value="{{ s.consent }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Consent" style="padding:0 20px 20px;display:flex;flex-direction:column;gap:18px">
+<div data-screen-label="Consent" class="nw-screen" style="padding:0 20px 0;gap:18px">
 <div style="height:48px;display:flex;align-items:center;justify-content:space-between"><button onClick="{{ back }}" style="display:flex;align-items:center;height:44px;border:none;background:none;color:#2F5D50;font-size:17px;padding:0"><span style="font-size:24px;display:flex">{{ ic.chevL }}</span>Back</button><span style="font-size:15px;color:#56605C">Step 2 of 3</span></div>
 <div style="height:4px;border-radius:2px;background:#E2DDD3;margin-top:-14px"><div style="width:66%;height:100%;border-radius:2px;background:#2F5D50"></div></div>
 <div><div style="font-size:30px;font-weight:700;letter-spacing:-.5px;line-height:1.12">Lakshmi's permission</div><div style="font-size:17px;line-height:1.45;color:#45504C;margin-top:10px;text-wrap:pretty">Lakshmi decides who can book her care and see her health information. Ask her, or confirm you're her substitute decision-maker.</div></div>
@@ -123,12 +125,12 @@
 </div>
 </div>
 <div style="display:flex;gap:10px;padding:14px;border-radius:14px;background:#EFEAE1;font-size:14px;line-height:1.4;color:#3E4744"><span style="font-size:18px;display:flex;flex:none">{{ ic.lock }}</span><span>Stored in Canada and handled under Ontario's health privacy law (PHIPA). Lakshmi can change or withdraw this at any time.</span></div>
-<button onClick="{{ go.profile }}" style="height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Send to Lakshmi for approval</button>
+<div class="nw-cta"><button onClick="{{ go.profile }}" style="width:100%;height:54px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Send to Lakshmi for approval</button></div>
 </div>
 </sc-if>
 
 <sc-if value="{{ s.profile }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Care profile" style="padding:0 20px 24px;display:flex;flex-direction:column;gap:16px">
+<div data-screen-label="Care profile" class="nw-screen" style="padding:0 20px 0;gap:16px">
 <div style="height:48px;display:flex;align-items:center;justify-content:space-between"><button onClick="{{ back }}" style="display:flex;align-items:center;height:44px;border:none;background:none;color:#2F5D50;font-size:17px;padding:0"><span style="font-size:24px;display:flex">{{ ic.chevL }}</span>Back</button><button style="height:44px;border:none;background:none;color:#2F5D50;font-size:17px;font-weight:600">Edit</button></div>
 <div style="display:flex;align-items:center;gap:14px"><span style="width:64px;height:64px;border-radius:50%;background:#EBD9C6;color:#7A4A2E;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;background-image:url(https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?w=200&h=200&q=70&auto=format&fit=crop&crop=faces);background-size:cover;background-position:center;color:transparent">LR</span><div><div style="font-size:30px;font-weight:700;letter-spacing:-.5px;line-height:1.1">Mom's care profile</div><div style="font-size:16px;color:#56605C;margin-top:4px">Lakshmi Raman · 78 · Waterloo</div></div></div>
 <div style="background:#fff;border-radius:20px;padding:16px;box-shadow:0 0 0 1px rgba(30,42,39,.07)">
@@ -161,7 +163,7 @@
 <div style="display:flex;gap:12px"><span style="font-size:22px;color:#2F5D50;display:flex">{{ ic.paw }}</span><span><span style="display:block;font-size:17px;font-weight:600">Biscuit, a friendly beagle</span><span style="font-size:15px;color:#56605C">Barks at the door, then settles</span></span></div>
 <div style="display:flex;gap:12px"><span style="font-size:22px;color:#2F5D50;display:flex">{{ ic.car }}</span><span><span style="display:block;font-size:17px;font-weight:600">Visitor parking behind building</span><span style="font-size:15px;color:#56605C">Enter from Erb St, spots marked V</span></span></div>
 </div>
-<button onClick="{{ go.home }}" style="height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Save &amp; go to home</button>
+<div class="nw-cta"><button onClick="{{ go.home }}" style="width:100%;height:54px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Save &amp; go to home</button></div>
 </div>
 </sc-if>
 <sc-if value="{{ s.home }}" hint-placeholder-val="{{ false }}">
@@ -224,7 +226,7 @@
 </sc-if>
 
 <sc-if value="{{ s.book_type }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Book · care type" style="padding:0 20px 0;display:flex;flex-direction:column;gap:16px;min-height:768px">
+<div data-screen-label="Book · care type" class="nw-screen" style="padding:0 20px 0;gap:16px">
 <div style="height:48px;display:flex;align-items:center;justify-content:space-between"><button onClick="{{ back }}" style="display:flex;align-items:center;height:44px;border:none;background:none;color:#2F5D50;font-size:17px;padding:0"><span style="font-size:24px;display:flex">{{ ic.chevL }}</span>Back</button><span style="font-size:15px;color:#56605C">1 of 4</span></div>
 <div style="height:4px;border-radius:2px;background:#E2DDD3;margin-top:-12px"><div style="width:25%;height:100%;border-radius:2px;background:#2F5D50"></div></div>
 <div style="font-size:30px;font-weight:700;letter-spacing:-.5px;line-height:1.12">What kind of care does Mom need?</div>
@@ -244,12 +246,12 @@
 </sc-if>
 <sc-if value="{{ bk.isNP }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:10px;padding:14px;border-radius:14px;background:#EFEAE1;font-size:15px;line-height:1.4;color:#3E4744"><span style="font-size:18px;display:flex;flex:none">{{ ic.cal }}</span>Nurse practitioner visits are scheduled ahead — not available on demand.</div></sc-if>
 <div style="flex:1"></div>
-<div style="position:sticky;bottom:0;padding:16px 0 10px;background:linear-gradient(rgba(247,243,236,0),#F7F3EC 30%)"><button onClick="{{ go.book_when }}" style="width:100%;height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Continue</button></div>
+<div class="nw-cta"><button onClick="{{ go.book_when }}" style="width:100%;height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Continue</button></div>
 </div>
 </sc-if>
 
 <sc-if value="{{ s.book_when }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Book · when" style="padding:0 20px;display:flex;flex-direction:column;gap:18px;min-height:768px">
+<div data-screen-label="Book · when" class="nw-screen" style="padding:0 20px 0;gap:18px">
 <div style="height:48px;display:flex;align-items:center;justify-content:space-between"><button onClick="{{ back }}" style="display:flex;align-items:center;height:44px;border:none;background:none;color:#2F5D50;font-size:17px;padding:0"><span style="font-size:24px;display:flex">{{ ic.chevL }}</span>Back</button><span style="font-size:15px;color:#56605C">2 of 4</span></div>
 <div style="height:4px;border-radius:2px;background:#E2DDD3;margin-top:-14px"><div style="width:50%;height:100%;border-radius:2px;background:#2F5D50"></div></div>
 <div><div style="font-size:30px;font-weight:700;letter-spacing:-.5px">When?</div><div style="font-size:16px;color:#56605C;margin-top:4px">{{ bk.careName }} · {{ bk.tierLabel }}</div></div>
@@ -283,7 +285,7 @@
 </div>
 </sc-if>
 <div style="flex:1"></div>
-<div style="position:sticky;bottom:0;padding:16px 0 10px;background:linear-gradient(rgba(247,243,236,0),#F7F3EC 30%)"><button onClick="{{ go.book_details }}" style="width:100%;height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Continue</button></div>
+<div class="nw-cta"><button onClick="{{ go.book_details }}" style="width:100%;height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Continue</button></div>
 </div>
 </sc-if>
 
@@ -303,7 +305,7 @@
 <sc-for list="{{ taskOpts }}" as="t"><button onClick="{{ t.onTap }}" style="display:flex;width:100%;align-items:center;gap:14px;min-height:56px;padding:0 16px;border:none;border-bottom:1px solid rgba(30,42,39,.07);background:none;font-size:17px;color:#1E2A27;text-align:left"><span style="width:28px;height:28px;flex:none;border-radius:50%;background:{{ t.cbg }};border:2px solid {{ t.cbd }};color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px">{{ ic.check }}</span>{{ t.label }}</button></sc-for>
 </div></div>
 <div><div style="font-size:17px;font-weight:650;margin-bottom:8px">Note for the caregiver <span style="font-weight:400;color:#56605C">(optional)</span></div><div style="min-height:80px;border-radius:16px;background:#fff;box-shadow:inset 0 0 0 1px rgba(30,42,39,.12);padding:14px 16px;font-size:17px;color:#7A827E">e.g. Mom prefers a shower before breakfast</div></div>
-<div style="position:sticky;bottom:0;padding:16px 0 10px;background:linear-gradient(rgba(247,243,236,0),#F7F3EC 30%);display:flex;align-items:center;gap:14px"><span style="flex:none"><span style="display:block;font-size:13px;color:#56605C">Estimated</span><span style="display:block;font-size:22px;font-weight:700">{{ bk.total }}</span></span><button onClick="{{ go.book_summary }}" style="flex:1;height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Review</button></div>
+<div class="nw-cta" style="display:flex;align-items:center;gap:14px"><span style="flex:none"><span style="display:block;font-size:13px;color:#56605C">Estimated</span><span style="display:block;font-size:22px;font-weight:700">{{ bk.total }}</span></span><button onClick="{{ go.book_summary }}" style="flex:1;height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Review</button></div>
 </div>
 </sc-if>
 
@@ -329,11 +331,11 @@
 <div style="display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:18px;background:#fff;box-shadow:0 0 0 1px rgba(30,42,39,.07)"><span style="width:46px;height:32px;border-radius:6px;background:#1A2B5E;color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;font-style:italic">VISA</span><span style="flex:1;font-size:17px">Visa •••• 4821</span><span style="color:#2F5D50;font-size:16px;font-weight:600">Change</span></div>
 <div style="display:flex;gap:10px;padding:14px;border-radius:14px;background:#E4EEE9;color:#24493F;font-size:15px;line-height:1.4"><span style="font-size:18px;display:flex;flex:none">{{ ic.shield }}</span>Nestwell sets one rate per role. You'll choose on experience and reviews — never price.</div>
 <sc-if value="{{ bk.isNow }}" hint-placeholder-val="{{ true }}"><div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:#EFEAE1;color:#3E4744;font-size:14px;line-height:1.4"><span style="font-size:18px;display:flex;flex:none">{{ ic.info }}</span><span><b>Not an emergency service.</b> If someone is in danger, call 911.</span></div></sc-if>
-<div style="position:sticky;bottom:0;padding:12px 0 10px;background:linear-gradient(rgba(247,243,236,0),#F7F3EC 30%)"><button onClick="{{ go.matching }}" style="width:100%;height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">{{ bk.cta }}</button></div>
+<div class="nw-cta"><button onClick="{{ go.matching }}" style="width:100%;height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">{{ bk.cta }}</button></div>
 </div>
 </sc-if>
 <sc-if value="{{ s.matching }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Matching" style="min-height:768px;padding:0 24px 20px;display:flex;flex-direction:column;align-items:center;text-align:center">
+<div data-screen-label="Matching" class="nw-screen" style="padding:0 24px 20px;align-items:center;text-align:center">
 <div style="height:48px"></div>
 <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px">
 {{ pulse }}
@@ -445,7 +447,7 @@
 </sc-if>
 
 <sc-if value="{{ s.match_none }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="No caregivers" style="min-height:768px;padding:0 20px 20px;display:flex;flex-direction:column;gap:16px">
+<div data-screen-label="No caregivers" class="nw-screen" style="padding:0 20px 0;gap:16px">
 <div style="height:48px;display:flex;align-items:center"><button onClick="{{ back }}" style="display:flex;align-items:center;height:44px;border:none;background:none;color:#2F5D50;font-size:17px;padding:0"><span style="font-size:24px;display:flex">{{ ic.chevL }}</span>Back</button></div>
 <div style="width:96px;height:96px;border-radius:30px;background:#EFEAE1;color:#56605C;display:flex;align-items:center;justify-content:center;font-size:44px;margin-top:20px">{{ ic.clock }}</div>
 <div><div style="font-size:28px;font-weight:700;letter-spacing:-.4px;line-height:1.15">No experienced PSWs are free right now</div><div style="font-size:17px;color:#45504C;margin-top:10px;line-height:1.45">It's a busy morning in Cambridge. Here's what we can do instead:</div></div>
@@ -458,7 +460,7 @@
 </sc-if>
 
 <sc-if value="{{ s.pay_error }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Payment error" style="min-height:768px;padding:0 20px 20px;display:flex;flex-direction:column;gap:16px">
+<div data-screen-label="Payment error" class="nw-screen" style="padding:0 20px 0;gap:16px">
 <div style="height:48px;display:flex;align-items:center"><button onClick="{{ back }}" style="display:flex;align-items:center;height:44px;border:none;background:none;color:#2F5D50;font-size:17px;padding:0"><span style="font-size:24px;display:flex">{{ ic.chevL }}</span>Back</button></div>
 <div style="font-size:30px;font-weight:700;letter-spacing:-.5px">Review &amp; confirm</div>
 <div style="display:flex;gap:12px;padding:16px;border-radius:18px;background:#FBE8E4;color:#7E2416;box-shadow:inset 0 0 0 1px rgba(168,50,31,.25)"><span style="font-size:24px;display:flex;flex:none">{{ ic.card }}</span><span><span style="display:block;font-size:17px;font-weight:700">Your card was declined</span><span style="display:block;font-size:15px;line-height:1.4;margin-top:4px">Your bank declined the hold on Visa •••• 4821. You haven't been charged and no caregiver has been booked yet.</span></span></div>
@@ -473,8 +475,7 @@
 <div style="display:flex;gap:12px;align-items:center;min-height:60px;padding:0 16px;border-bottom:1px solid rgba(30,42,39,.07)"><span style="width:46px;height:32px;border-radius:6px;background:#EB5F2A;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center">MC</span><span style="flex:1;font-size:17px">Mastercard •••• 1190</span><span style="width:24px;height:24px;border-radius:50%;border:2px solid #2F5D50;display:flex;align-items:center;justify-content:center"><span style="width:12px;height:12px;border-radius:50%;background:#2F5D50"></span></span></div>
 <div style="display:flex;gap:12px;align-items:center;min-height:60px;padding:0 16px;color:#2F5D50;font-size:17px;font-weight:600"><span style="font-size:22px;display:flex">{{ ic.plus }}</span>Add a card</div>
 </div>
-<div style="flex:1"></div>
-<button onClick="{{ go.matching }}" style="height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Try again with Mastercard</button>
+<div class="nw-cta"><button onClick="{{ go.matching }}" style="width:100%;height:54px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Try again with Mastercard</button></div>
 </div>
 </sc-if>
 
@@ -491,7 +492,7 @@
 </sc-if>
 
 <sc-if value="{{ s.empty }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Empty state" style="min-height:700px;padding:0 20px 20px;display:flex;flex-direction:column;gap:16px">
+<div data-screen-label="Empty state" style="min-height:100%;padding:0 20px 20px;display:flex;flex-direction:column;gap:16px">
 <div style="height:48px"></div>
 <div style="display:flex;gap:4px;padding:3px;border-radius:12px;background:#EEE9E0"><button style="flex:1;height:44px;border:none;border-radius:10px;background:transparent;font-size:16px;font-weight:500;color:#1E2A27">Mom</button><button style="flex:1;height:44px;border:none;border-radius:10px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.14);font-size:16px;font-weight:650;color:#1E2A27">Dad</button></div>
 <div style="font-size:34px;font-weight:700;letter-spacing:-.6px">Dad's care</div>
@@ -715,7 +716,7 @@
 </sc-if>
 
 <sc-if value="{{ s.messages }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Messaging" style="display:flex;flex-direction:column;min-height:768px">
+<div data-screen-label="Messaging" class="nw-screen">
 <div style="display:flex;align-items:center;gap:10px;padding:2px 16px 12px 12px;border-bottom:1px solid rgba(30,42,39,.08);background:#F7F3EC;position:sticky;top:0;z-index:5"><button onClick="{{ back }}" style="width:40px;height:44px;border:none;background:none;color:#2F5D50;font-size:24px;display:flex;align-items:center;padding:0">{{ ic.chevL }}</button><span style="width:44px;height:44px;border-radius:50%;background:#D9E4DC;color:#24493F;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;background-image:url(https://images.unsplash.com/photo-1624727828489-a1e03b79bba8?w=200&h=200&q=70&auto=format&fit=crop&crop=faces);background-size:cover;background-position:center;color:transparent">MS</span><span style="flex:1"><span style="display:block;font-size:17px;font-weight:650">Maria Santos</span><span style="display:block;font-size:13px;color:#56605C">PSW · visiting Mom today</span></span><button style="width:44px;height:44px;border-radius:50%;border:none;background:#E4EEE9;color:#2F5D50;font-size:20px;display:flex;align-items:center;justify-content:center">{{ ic.phone }}</button></div>
 <div style="flex:1;padding:16px;display:flex;flex-direction:column;gap:10px">
 <div style="align-self:center;font-size:13px;color:#56605C;padding:6px 12px;border-radius:12px;background:#EFEAE1;display:flex;gap:6px;align-items:center"><span style="display:flex">{{ ic.lock }}</span>Saved to Mom's care record · numbers stay private</div>
@@ -729,7 +730,7 @@
 </div>
 </sc-if>
 <sc-if value="{{ s.cg_onboard }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Caregiver credentials" style="padding:0 20px 24px;display:flex;flex-direction:column;gap:16px">
+<div data-screen-label="Caregiver credentials" class="nw-screen" style="padding:0 20px 0;gap:16px">
 <div style="height:48px;display:flex;align-items:center;justify-content:space-between"><button onClick="{{ back }}" style="display:flex;align-items:center;height:44px;border:none;background:none;color:#2F5D50;font-size:17px;padding:0"><span style="font-size:24px;display:flex">{{ ic.chevL }}</span>Back</button><span style="font-size:15px;color:#56605C">Step 2 of 3</span></div>
 <div><div style="font-size:30px;font-weight:700;letter-spacing:-.5px;line-height:1.12">Get verified to start</div><div style="font-size:16px;color:#45504C;margin-top:8px;line-height:1.45">We check every caregiver before their first visit. Most applications are reviewed in 2–3 business days.</div></div>
 <div><div style="font-size:15px;color:#56605C;margin-bottom:8px">I'm a…</div><div style="display:flex;gap:4px;padding:3px;border-radius:12px;background:#EEE9E0"><sc-for list="{{ cgRoles }}" as="o"><button onClick="{{ o.onTap }}" style="flex:1;height:44px;border:none;border-radius:10px;background:{{ o.bg }};box-shadow:{{ o.sh }};font-size:16px;font-weight:{{ o.fw }};color:#1E2A27">{{ o.label }}</button></sc-for></div></div>
@@ -744,7 +745,7 @@
 </div></sc-for>
 </div>
 <div style="display:flex;gap:10px;padding:14px;border-radius:14px;background:#EFEAE1;font-size:14px;line-height:1.4;color:#3E4744"><span style="font-size:18px;display:flex;flex:none">{{ ic.lock }}</span>Documents are encrypted and stored in Canada. Only our verification team can see them.</div>
-<button onClick="{{ go.cg_verify }}" style="height:58px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Submit for review</button>
+<div class="nw-cta"><button onClick="{{ go.cg_verify }}" style="width:100%;height:54px;border-radius:18px;border:none;background:#2F5D50;color:#fff;font-size:18px;font-weight:600">Submit for review</button></div>
 </div>
 </sc-if>
 
@@ -1429,8 +1430,9 @@ class Component extends DCLogic {
     const idx = LIST.findIndex(x => x.id === scr);
     const sizeKey = st.textSize || p.textSize || 'Default';
     const tz = sizeKey === 'Extra large' ? 1.3 : sizeKey === 'Large' ? 1.15 : 1;
-    const mobile = !meta.pad && !!st.vw && st.vw < 540 && !!st.coarse;
-    const z = mobile ? (st.vw / 393) * tz : tz;
+    const mobile = !meta.pad && !!st.vw && st.vw < 540 && (!!st.coarse || st.present || !!p.present);
+    // Avoid CSS zoom on mobile — it breaks sticky CTAs. Size content to the viewport instead.
+    const z = tz;
     const dark = !!meta.dark;
     const flows = FLOWS.map(([name, items], fi) => ({ n: fi + 1, name, items: items.map(([id, label]) => ({ label, onTap: () => this.nav(id), bg: id === scr ? '#2F5D50' : 'transparent', col: id === scr ? '#fff' : '#2B3532', fw: id === scr ? '600' : '500' })) }));
     // tabs
@@ -1580,9 +1582,9 @@ class Component extends DCLogic {
 
     return {
       s, go, back: this.back, restartDemo: this.restartDemo, ic: ICONS, flows, stageRef: this.stageRef, scrollRef: this.scrollRef, scale: mobile ? 1 : st.stageW ? Math.min(1, (st.stageW - 40) / (meta.pad ? 1220 : 417), (st.stageH - 40) / (meta.pad ? 860 : 876)) : 0.7,
-      isPhone: !meta.pad, isPad: !!meta.pad, z, zw: (mobile ? st.vw : 393) / z, zh: (mobile ? st.vh : 852) / z, sbPad: Math.round((mobile ? 22 : 54) / z),
+      isPhone: !meta.pad, isPad: !!meta.pad, z, zw: (mobile ? st.vw : 393) / z, zh: (mobile ? st.vh : 852) / z, sbPad: Math.round((mobile ? 12 : 54) / z),
       chrome: !mobile, rootH: mobile ? st.vh + 'px' : '100vh', rootMin: (mobile || st.present || p.present) ? '0' : '600px', rootBg: mobile ? (dark ? '#111614' : '#F7F3EC') : 'transparent',
-      fr: mobile ? { w: st.vw, h: st.vh, r: 0, bg: 'transparent', pad: 0, sh: 'none', sw: st.vw, sh2: st.vh, sr: 0 } : { w: 417, h: 876, r: 66, bg: '#1B1F1E', pad: 12, sh: 'inset 0 0 0 2px #3B423F,0 40px 90px rgba(30,42,39,.28)', sw: 393, sh2: 852, sr: 54 }, padBottom: meta.tabs ? Math.round(100 / z) : 30,
+      fr: mobile ? { w: st.vw, h: st.vh, r: 0, bg: 'transparent', pad: 0, sh: 'none', sw: st.vw, sh2: st.vh, sr: 0 } : { w: 417, h: 876, r: 66, bg: '#1B1F1E', pad: 12, sh: 'inset 0 0 0 2px #3B423F,0 40px 90px rgba(30,42,39,.28)', sw: 393, sh2: 852, sr: 54 }, padBottom: meta.tabs ? Math.round(100 / z) : Math.round((mobile ? 16 : 12) / z),
       screenBg: dark ? '#111614' : (meta.lock ? '#2A3431' : '#F7F3EC'), sbCol: (dark || meta.lock) ? '#fff' : '#1E2A27', sbTime: meta.t || '9:41',
       hasTabs: !!meta.tabs, tabs, tabBg: dark ? 'rgba(24,30,28,.92)' : 'rgba(251,249,245,.92)', tabLine: dark ? 'rgba(255,255,255,.08)' : 'rgba(30,42,39,.08)',
       showNotes: (p.showNotes ?? true) && !(st.present || p.present || mobile), showSide: !(st.present || p.present || mobile),
